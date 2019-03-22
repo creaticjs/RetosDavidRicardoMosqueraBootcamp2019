@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Reto Calculadora</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> -->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"> -->
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"> -->
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"> -->
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"> -->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./css/util.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+					</form>
+					<span class="login100-form-title">
+						Calculadora
+					</span>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class='input100' id="capturador">
+					</div>
+					<input id="capturador"></input>
+					<div class="row">
+						<div class="col">
+							<button id="num1" class="login100-form-btn" onclick="capturar('1')">1</button>
+						</div>
+						<div class="col">
+							<button id="num2" class="login100-form-btn" onclick="capturar('2')">2</button>
+						</div>
+						<div class="col">
+							<button id="num3" class="login100-form-btn" onclick="capturar('3')">3</button>
+						</div>
+						<div class="col">
+							<button id="division" class="login100-form-btn" onclick="division()">/</button>
+						</div>
+						<div class="col">
+							<button id="restablecer" class="login100-form-btn" onclick="restablecer()">AC</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<button id="num4" class="login100-form-btn" onclick="capturar('4')">4</button>
+						</div>
+						<div class="col">
+							<button id="num5" class="login100-form-btn" onclick="capturar('5')">5</button>
+						</div>
+						<div class="col">
+							<button id="num6" class="login100-form-btn" onclick="capturar('6')">6</button>
+						</div>
+						<div class="col">
+							<button id="multiplicacion" class="login100-form-btn" onclick="multiplicacion()">x</button>
+						</div>
+						<div class="col">
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<button id="num7" class="login100-form-btn" onclick="capturar('7')">7</button>
+						</div>
+						<div class="col">
+							<button id="num8" class="login100-form-btn" onclick="capturar('8')">8</button>
+						</div>
+						<div class="col">
+							<button id="num9" class="login100-form-btn" onclick="capturar('9')">9</button>
+						</div>
+						<div class="col">
+							<button id="resta" class="login100-form-btn" onclick="resta()">-</button>
+						</div>
+						<div class="col">
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<button id="num0" class="login100-form-btn" onclick="capturar('0')">0</button>
+						</div>
+						<div class="col">
+							<button id="coma" class="login100-form-btn" onclick="capturar('.')">,</button>
+						</div>
+						<div class="col">
+							<button id="resultado" class="login100-form-btn" onclick="resultado()">=</button>
+						</div>
+						<div class="col">
+							<button id="suma" class="login100-form-btn" onclick="suma()">+</button>
+						</div>
+						<div class="col">
+
+						</div>
+					</div>
+				</div>
+				<br><br>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let operacionActual = null
+		let valorAnterior = null
+		let capturador = document.getElementById('capturador')
+
+		const capturar = (num) => {
+			console.log('numero', num)
+			let valorAnterior = capturador.value
+			capturador.value = `${valorAnterior}${num}`
+		}
+
+		function suma() {
+			operacionActual = 'suma'
+			if (valorAnterior === null) {
+				valorAnterior = parseFloat(capturador.value)
+				capturador.value = null
+			} else {
+				let operacion = valorAnterior + parseFloat(capturador.value)
+				valorAnterior = operacion
+				capturador.value = null
+			}
+			console.log('valor anterior', valorAnterior)
+		}
+
+		function resta() {
+			console.log('resta')
+			operacionActual = 'resta'
+			if (valorAnterior === null) {
+				valorAnterior = parseFloat(capturador.value)
+				capturador.value = null
+			} else {
+				let operacion = valorAnterior - parseFloat(capturador.value)
+				valorAnterior = operacion
+				capturador.value = null
+			}
+			console.log('valor anterior', valorAnterior)
+		}
+
+		function multiplicacion() {
+			console.log('multiplicar')
+			operacionActual = 'multiplicacion'
+			if (valorAnterior === null) {
+				valorAnterior = parseFloat(capturador.value)
+				capturador.value = null
+			} else {
+				let operacion = valorAnterior * parseFloat(capturador.value)
+				valorAnterior = operacion
+				capturador.value = null
+			}
+			console.log('valor anterior', valorAnterior)
+
+		}
+
+		function division() {
+			console.log('division')
+			operacionActual = 'division'
+			if (valorAnterior === null) {
+				valorAnterior = parseFloat(capturador.value)
+				capturador.value = null
+			} else {
+				let operacion = valorAnterior / parseFloat(capturador.value)
+				valorAnterior = operacion
+				capturador.value = null
+			}
+			console.log('valor anterior', valorAnterior)
+		}
+
+		const decimal = () => {
+
+		}
+
+		function resultado() {
+			let operacion
+			switch (operacionActual) {
+				case 'suma':
+					operacion = valorAnterior + parseFloat(capturador.value)
+					break;
+				case 'resta':
+					operacion = valorAnterior - parseFloat(capturador.value)
+					break;
+				case 'multiplicacion':
+					operacion = valorAnterior * parseFloat(capturador.value)
+					break;
+				case 'division':
+					operacion = valorAnterior / parseFloat(capturador.value)
+					break;
+				default:
+					break;
+			}
+			capturador.value = operacion;
+			valorAnterior = null;
+		}
+
+		const restablecer = () => {
+			capturador.value = ''
+			valorAnterior = null
+			operacionActual = null
+		}
+	</script>
+
+	<!--===============================================================================================-->
+	// <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	// <script src="vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	// <script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	// <script src="vendor/daterangepicker/moment.min.js"></script>
+	// <script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	// <script src="vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	// <script src="js/main.js"></script>
+
+</body>
+
+</html>
